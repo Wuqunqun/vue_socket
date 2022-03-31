@@ -15,28 +15,34 @@ export default {
   },
   methods: {
     send(){
+      var time = new Date();
       /* 发送消息 */
       /* 先判断是群聊还是私聊 */
       if(this.chatType=='group'){
-        var data={
-          username: this.userInfo.name,
-          list:{
-            name:this.myInfo.name,
-            img:this.myInfo.img,
-            type: "my",//标记是我发的信息，但是通过服务器转发，必须是user，变成别人的，才能让别人渲染成功，不然所有人发送，都是my，就都在右边了
-            time: new Date().toLocaleString( ), //获取日期与时间,
-            msg: this.input,
-          }
-          }
+         let data={
+            type:'my',
+            sender:this.myInfo.name,//发送者id
+            img:this.myInfo.img,//发送者的img
+            receiver: '默认群聊',//接收方id
+            time:time.toLocaleString( ),//发送时间
+            msg: this.input,//消息内容
+        }
         this.$socket.emit('groupChat',data);
         /* 自己的信息直接push到数组中 */
         store.commit('SOCKET_updateChatMessageList',data);
-        // console.log(this.chartmsg)
       }else{
-        this.$socket.emit('privateChat',{});
-        console.log('私聊');
+         let data={
+            type:'my',
+            sender:this.myInfo.name,//发送者id
+            img:this.myInfo.img,//发送者的img
+            receiver:this.userInfo.name,//接收方id
+            time:time.toLocaleString( ),//发送时间
+            msg: this.input,//消息内容
+        }
+        this.$socket.emit('privateChat',data);
+        /* 自己的信息直接push到数组中 */
+        store.commit('SOCKET_updateChatMessageList',data);
       }
-      console.log(this.input);
       /* 清空输入框 */
       this.input='';
     },

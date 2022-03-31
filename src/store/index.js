@@ -38,7 +38,14 @@ export default new Vuex.Store({
       img: 'https://pic1.zhimg.com/50/v2-adfacac8307b48531d4e341a6090aa03_hd.jpg?source=1940ef5c'
     }],
     /* 聊天记录 */
-    chatMessageList: [],
+    chatMessageList: [
+      //   {
+      //   sender:'',//发送者id
+      //   receiver: '',//接收方id
+      //   time:'',//发送时间
+      //   msg:''//消息内容
+      //  }
+    ],
   },
   mutations: {
 
@@ -58,22 +65,10 @@ export default new Vuex.Store({
       state.chatType = data;
     },
     /* 聊天记录的修改,这里我们使用vuex监听 */
-    SOCKET_updateChatMessageList(state, data) {
-      var finduser = false;
-      /* 数据处理：先找到自己的聊天记录 */
-      state.chatMessageList.forEach(list => {
-        if (list.username == data.username) {
-          finduser = true;
-          list.list.push(data.list)
-        }
-      });
-      if (!finduser) {
-        state.chatMessageList.push({
-          username: data.username,
-          list: [data.list]
-        });
-      }
-    },
+    /* 聊天记录的修改,这里我们使用vuex监听 */
+    SOCKET_updateChatMessageList(state,data){
+      state.chatMessageList.push(data);
+  },
   },
   actions: {},
   modules: {}
