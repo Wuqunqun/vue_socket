@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isLogin">
+  <div v-if="isLogin">
     <el-tabs v-model="activeName">
       <el-tab-pane label="欢迎登录" name="first">
         <!-- 用户名输入 -->
@@ -138,5 +138,8 @@ export default {
 }
 .login .avatar .el-avatar {
   cursor: pointer;
+}
+.el-container{
+  background-color: green;
 }
 </style>

@@ -34,7 +34,7 @@ export default new Vuex.Store({
     //   img: 'http://img.52z.com/upload/news/image/20180111/20180111085521_86389.jpg'
     // }],
     userList: [{
-      name: '默认群聊',
+      name: '群群聊天天',
       img: 'https://pic1.zhimg.com/50/v2-adfacac8307b48531d4e341a6090aa03_hd.jpg?source=1940ef5c'
     }],
     /* 聊天记录 */
