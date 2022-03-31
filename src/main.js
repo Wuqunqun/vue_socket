@@ -8,7 +8,7 @@ import VueSocketIO from 'vue-socket.io'
 Vue.use(ElementUI).use(
   new VueSocketIO({
     debug: true, // debug调试，生产建议关闭
-    connection: "http://localhost:5000",
+    connection: "http://120.55.55.33:5000",
     vuex: {
       store,
       actionPrefix: 'SOCKET_',
